@@ -1,0 +1,42 @@
+.custom-input-container {
+  position: relative;
+  display: inline-block;
+}
+
+.custom-input {
+  padding: 8px 30px 8px 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  width: 200px;
+  outline: none;
+}
+
+.custom-input:focus {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 4px 0 rgba(0, 0, 0, 0.19);
+}
+
+.clear-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-40%);
+  color: #504f4f;
+  cursor: pointer;
+}
+
+.spinner {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border: 3px solid #ccc;
+  border-top-color: #999;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
