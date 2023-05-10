@@ -27,17 +27,6 @@ const App: React.FC = () => {
           <NormalAutocomplete />
         </Col>
       </Row>
-
-      {/* <div style={{ position: "relative", height: "100% my phone" }}>
-        <Divider orientation="left">Normal Autocomplete</Divider>
-        <Typography.Paragraph style={{ textAlign: "justify" }}>
-          This is a normal autocomplete that takes a list of options and
-          displays them accordingly.
-        </Typography.Paragraph>
-        <div style={{ position: "absolute", bottom: 0 }}>
-          <NormalAutocomplete />
-        </div>
-      </div> */}
     </div>
   );
 };
