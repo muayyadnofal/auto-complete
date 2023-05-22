@@ -1,5 +1,4 @@
 import React from "react";
-import _ from "lodash";
 import { Option } from "@/Core/common-dto/Option";
 
 interface OptionProps {
@@ -10,11 +9,13 @@ interface OptionProps {
 }
 
 function AOption({ option, selected, optionRef, onClick }: OptionProps) {
+  const isEqual = JSON.stringify(selected) === JSON.stringify(option);
+
   return (
     <li
       onClick={() => onClick(option)}
-      className={_.isEqual(selected, option) ? "selected" : ""}
-      ref={_.isEqual(selected, option) ? optionRef : null}
+      className={isEqual ? "selected" : ""}
+      ref={isEqual ? optionRef : null}
     >
       {option.label}
     </li>

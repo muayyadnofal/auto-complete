@@ -1,32 +1,35 @@
-import React from "react";
-import { Typography, Divider, Row, Col } from "antd";
 import AsyncAutocomplete from "./Presentation/AsyncAutocomplete";
 import NormalAutocomplete from "./Presentation/NormalAutocomplete";
 
-const App: React.FC = () => {
+const App = () => {
   return (
     <div className="demo-container">
-      <Row gutter={[24, 24]}>
-        <Col span={12}>
-          <Divider orientation="left">Async Autocomplete</Divider>
-          <Typography.Paragraph style={{ textAlign: "justify" }}>
-            This is an asynchronous autocomplete. It calls a callback function
-            to retrieve the options list and displays a loading spinner until
-            the data is fetched. The fetch request is triggered when the user
-            focuses on the input, and it will be aborted if the user clicks
-            outside the component, closing the option list.
-          </Typography.Paragraph>
+      <div className="column">
+        <h2 className="divider">Async Autocomplete</h2>
+        <p className="paragraph">
+          This is an asynchronous autocomplete. It calls a callback function to
+          retrieve the options list and displays a loading spinner until the
+          data is fetched. The fetch request is triggered when the user focuses
+          on the input.
+        </p>
+        <AsyncAutocomplete />
+        <div className="stick-down">
+          <h2 className="divider">Autocomplete Options</h2>
+          <p className="paragraph">
+            when the autocomplete input is near to the bottom of the page, the
+            options dropdown will open on top of the input
+          </p>
           <AsyncAutocomplete />
-        </Col>
-        <Col span={12}>
-          <Divider orientation="left">Normal Autocomplete</Divider>
-          <Typography.Paragraph style={{ textAlign: "justify" }}>
-            This is a normal autocomplete that takes a list of options and
-            displays them accordingly.
-          </Typography.Paragraph>
-          <NormalAutocomplete />
-        </Col>
-      </Row>
+        </div>
+      </div>
+      <div className="column">
+        <h2 className="divider">Normal Autocomplete</h2>
+        <p className="paragraph">
+          This is a normal autocomplete that takes a list of options and
+          displays them accordingly.
+        </p>
+        <NormalAutocomplete />
+      </div>
     </div>
   );
 };

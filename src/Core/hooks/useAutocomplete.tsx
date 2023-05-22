@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { useClickOutside } from "./useClickOutside";
 import { Option } from "@/Core/common-dto/Option";
+import { useDropdownPosition } from "./useDropdownPosition";
 
 interface UseAutocompleteProps {
   options: Option[];
+  loading?: boolean;
   onInit?: () => void;
   onClose?: () => void;
 }
@@ -24,6 +26,7 @@ interface UseAutocompleteReturn {
 
 const useAutocomplete = ({
   options,
+  loading,
   onInit,
   onClose,
 }: UseAutocompleteProps): UseAutocompleteReturn => {
@@ -57,13 +60,6 @@ const useAutocomplete = ({
     setIsFocused(false);
   };
 
-  useEffect(() => {
-    const newOptions = options.filter((option) =>
-      option.label.toLowerCase().includes(inputValue.toLowerCase())
-    );
-    setFilteredOptions(selected ? options : newOptions);
-  }, [selected, inputValue, options]);
-
   const closeDropdown = () => {
     if (!selected) {
       setInputValue("");
@@ -72,13 +68,28 @@ const useAutocomplete = ({
     onClose && onClose();
   };
 
-  useEffect(() => {
-    if (isFocused && selectedOptionRef.current && autocompleteRef.current) {
-      selectedOptionRef.current.scrollIntoView();
-    }
-  }, [isFocused, selectedOptionRef, options]);
-
   useClickOutside(autocompleteRef, closeDropdown);
+  useDropdownPosition(autocompleteRef, dropdownRef, isFocused, loading);
+
+  useEffect(() => {
+    const newOptions = options.filter((option) =>
+      option.label.toLowerCase().includes(inputValue.toLowerCase())
+    );
+    setFilteredOptions(selected ? options : newOptions);
+  }, [selected, inputValue, options]);
+
+  useEffect(() => {
+    if (selectedOptionRef.current && dropdownRef.current) {
+      dropdownRef.current.scrollTop = selectedOptionRef.current.offsetTop;
+    }
+  }, [isFocused, selectedOptionRef, loading]);
+
+  useEffect(() => {
+    const newOptions = options.filter((option) =>
+      option.label.toLowerCase().includes(inputValue.toLowerCase())
+    );
+    setFilteredOptions(selected ? options : newOptions);
+  }, [selected, inputValue, options]);
 
   return {
     inputValue,

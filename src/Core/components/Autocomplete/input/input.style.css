@@ -20,7 +20,7 @@
   position: absolute;
   top: 50%;
   right: 10px;
-  transform: translateY(-40%);
+  transform: translateY(-50%);
   color: #504f4f;
   cursor: pointer;
 }
@@ -33,6 +33,11 @@
   border-top-color: #999;
   border-radius: 50%;
   animation: spin 0.6s linear infinite;
+}
+
+.close {
+  font-size: 15px;
+  font-weight: 600;
 }
 
 @keyframes spin {

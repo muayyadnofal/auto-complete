@@ -32,7 +32,7 @@ const Autocomplete: React.FC<AutocompleteProps> = ({
     handleClearInput,
     handleInputFocus,
     handleOptionClick,
-  } = useAutocomplete({ options, onInit, onClose });
+  } = useAutocomplete({ options, loading, onInit, onClose });
 
   return (
     <div className="autocomplete" ref={autocompleteRef}>

@@ -1,6 +1,5 @@
 import React from "react";
 import "./input.style.css";
-import { AiOutlineCloseCircle } from "react-icons/ai";
 
 interface CustomInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   onClear?: () => void;
@@ -33,12 +32,11 @@ const CustomInput: React.FC<CustomInputProps> = ({
         style={inputStyles}
         {...rest}
       />
-
       <span className="clear-icon" onClick={handleClear}>
         {loading ? (
           <div className="spinner" />
         ) : (
-          value && <AiOutlineCloseCircle />
+          value && <span className="close">&times;</span>
         )}
       </span>
     </div>

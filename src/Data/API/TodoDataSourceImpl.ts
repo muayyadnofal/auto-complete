@@ -1,15 +1,20 @@
-import ApiService from "@/Core/utils/base-api/APIService";
 import { TodoDataSource } from "../TodoDataSource";
 import { Todo } from "@/Domain/Model/Todo";
 import { TodoAPIEntity } from "./Entity/TodoAPIEntity";
+import { baseApiURL } from "@/Core/constants/app.const";
 
-class TodoAPIDataSourceImpl extends ApiService implements TodoDataSource {
-  constructor() {
-    super({ baseURL: "/todos" });
-  }
+interface TypedResponse<T = any> extends Response {
+  json<P = T>(): Promise<P>;
+}
 
+function myFetch<T>(...args: any): Promise<TypedResponse<T>> {
+  return fetch.apply(window, args);
+}
+
+class TodoAPIDataSourceImpl implements TodoDataSource {
   async getTodos(): Promise<Todo[]> {
-    const data = await this.get<Promise<TodoAPIEntity[]>>("");
+    const response = await myFetch<TodoAPIEntity[]>(`${baseApiURL}/todos`);
+    let data = await response.json();
     return data.map((item) => ({
       value: item.id,
       label: item.title,
